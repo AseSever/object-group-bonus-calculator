@@ -40,4 +40,90 @@ const employees = [
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
 
-console.log( employees );
+let Atticus = {
+  name: 'Atticus',
+  employeeNumber: '2400',
+  annualSalary: '64999',
+  reviewRating: 5
+}
+console.log(employees);
+
+function employeeSalaryData( person ) {
+  let calculatedEmployee = {
+    name: person.name,
+    bonusPercentage: bonusCalculator( person ),
+    totalCompensation: totalCompensation( person ),
+    totalBonus: totalBonus( person )
+  }
+  return calculatedEmployee;
+}
+
+function checkingSalaryData( arrayOfEmployees ) {
+  // we need to loop over the employee array
+  for( let i = 0; i < arrayOfEmployees.length; i++ ){
+    console.log(employeeSalaryData( arrayOfEmployees[ i ]));
+    
+  } // end for
+  
+} // end checkingSalaryData
+
+
+checkingSalaryData( employees );
+
+
+//console.log( employeeSalaryData( Atticus ));
+
+function bonusCalculator(employeeObject) {
+  //console.log('inside bonusCalculator', employeeObject);
+
+  let bonusPercentage = 0;
+  //name
+  //bonusPercentage
+  if (employeeObject.reviewRating === 3) {
+    //console.log('3 is your rating')
+    bonusPercentage += 0.04;
+  } else if (employeeObject.reviewRating === 4) {
+    //console.log('4 is your rating')
+    bonusPercentage += 0.06;
+  } else if (employeeObject.reviewRating === 5) {
+    //console.log('5 is your rating!')
+    bonusPercentage += 0.1;
+  } else if (employeeObject.reviewRating <= 2) {
+    //console.log('NO BONUS!!!¡¡¡!!!')
+    bonusPercentage += 0;
+  }
+
+  let numberOfDigits = employeeObject.employeeNumber;
+  if (numberOfDigits.length < 5) {
+    bonusPercentage += 0.05;
+  };
+
+  if (employeeObject.annualSalary > '65000') {
+    bonusPercentage -= 0.01;
+  };
+
+  if (bonusPercentage > 0.13) {
+    bonusPercentage = 0.13;
+  } else if (bonusPercentage < 0) {
+    bonusPercentage = 0;
+
+
+  }; 
+  //totalCompensation
+   //totalBonus
+  return bonusPercentage;
+};
+
+
+
+function totalCompensation(objectSalary) {
+   //console.log( 'in totalCompensation: ', objectSalary );
+  // multiply bonusCalculator by employees salary
+  return Math.floor((bonusCalculator( objectSalary ) + 1) * Number(objectSalary.annualSalary));
+}
+
+
+function totalBonus( objectBonus ) {
+  return Math.floor(bonusCalculator( objectBonus ) * Number(objectBonus.annualSalary));
+}
+
