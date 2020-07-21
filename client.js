@@ -31,6 +31,25 @@ const employees = [
   }
 ];
 
+
+$( document ).ready ( readyNow )
+
+function showEmployeesBonuses() {
+ // show the output in the dom
+// call the ul id
+let el = $('#theEmployeeList')
+el.empty();
+for (employee of employees)
+el.append( `<li> Name: ${employeeSalaryData( employee ).name}, Bonus percentage: ${employeeSalaryData( employee ).bonusPercentage}, Total Compensation: ${employeeSalaryData( employee ).totalCompensation}, Total Bonus: ${employeeSalaryData( employee ).totalBonus} </li>` )
+} 
+
+
+
+function readyNow() {
+  // console.log( 'JQ' );
+  showEmployeesBonuses();
+}; // end readyNow
+
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
 // Take small steps! Don't write a for loop and two functions that do all of the calculations right away.
@@ -48,27 +67,27 @@ let Atticus = {
 }
 console.log(employees);
 
-function employeeSalaryData( person ) {
+function employeeSalaryData(person) {
   let calculatedEmployee = {
     name: person.name,
-    bonusPercentage: bonusCalculator( person ),
-    totalCompensation: totalCompensation( person ),
-    totalBonus: totalBonus( person )
+    bonusPercentage: bonusCalculator(person),
+    totalCompensation: totalCompensation(person),
+    totalBonus: totalBonus(person)
   }
   return calculatedEmployee;
 }
 
-function checkingSalaryData( arrayOfEmployees ) {
+function checkingSalaryData(arrayOfEmployees) {
   // we need to loop over the employee array
-  for( let i = 0; i < arrayOfEmployees.length; i++ ){
-    console.log(employeeSalaryData( arrayOfEmployees[ i ]));
-    
+  for (let i = 0; i < arrayOfEmployees.length; i++) {
+    console.log(employeeSalaryData(arrayOfEmployees[i]));
+
   } // end for
-  
+
 } // end checkingSalaryData
 
 
-checkingSalaryData( employees );
+checkingSalaryData(employees);
 
 
 //console.log( employeeSalaryData( Atticus ));
@@ -108,22 +127,22 @@ function bonusCalculator(employeeObject) {
     bonusPercentage = 0;
 
 
-  }; 
+  };
   //totalCompensation
-   //totalBonus
+  //totalBonus
   return bonusPercentage;
 };
 
 
 
 function totalCompensation(objectSalary) {
-   //console.log( 'in totalCompensation: ', objectSalary );
+  //console.log( 'in totalCompensation: ', objectSalary );
   // multiply bonusCalculator by employees salary
-  return Math.floor((bonusCalculator( objectSalary ) + 1) * Number(objectSalary.annualSalary));
+  return Math.floor((bonusCalculator(objectSalary) + 1) * Number(objectSalary.annualSalary));
 }
 
 
-function totalBonus( objectBonus ) {
-  return Math.floor(bonusCalculator( objectBonus ) * Number(objectBonus.annualSalary));
+function totalBonus(objectBonus) {
+  return Math.floor(bonusCalculator(objectBonus) * Number(objectBonus.annualSalary));
 }
 
