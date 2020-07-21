@@ -47,7 +47,7 @@ el.append( `<li> Name: ${employeeSalaryData( employee ).name}, Bonus percentage:
 
 function readyNow() {
   // console.log( 'JQ' );
-  showEmployeesBonuses();
+  $('#startProgram').on( 'click', showEmployeesBonuses);
 }; // end readyNow
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
